@@ -35,5 +35,5 @@ openssl s_client -showcerts -connect www.example.com:443 </dev/null
 
 ### Gen certificate one line with SAN (OpenSSL ≥ 1.1.1)
 ```shell
-openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout example.key -out example.crt -subj /CN=example.com -addext subjectAltName=DNS:example.com,DNS:example.net,IP:10.0.0.1
+openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout example.key -out example.crt -extensions san -config <(echo "[req]"; echo distinguished_name=req; echo "[san]"; echo subjectAltName=DNS:example.com,DNS:example.net,IP:10.0.0.1) -subj /CN=example.com
 ```
