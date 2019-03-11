@@ -32,3 +32,8 @@ openssl s_client -showcerts -servername www.example.com -connect www.example.com
 ```shell
 openssl s_client -showcerts -connect www.example.com:443 </dev/null
 ```
+
+### Gen certificate one line with SAN (OpenSSL ≥ 1.1.1)
+```shell
+openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout example.key -out example.crt -subj /CN=example.com -addext subjectAltName=DNS:example.com,DNS:example.net,IP:10.0.0.1
+```
