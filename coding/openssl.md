@@ -32,6 +32,10 @@ openssl s_client -showcerts -servername www.example.com -connect www.example.com
 ```shell
 openssl s_client -showcerts -connect www.example.com:443 </dev/null
 ```
+### Show Host cert one line
+```
+echo | openssl s_client -showcerts -servername gnupg.org -connect gnupg.org:443 2>/dev/null | openssl x509 -inform pem -noout -text
+```
 
 ### Gen certificate one line with SAN (OpenSSL ≥ 1.1.1)
 ```shell
