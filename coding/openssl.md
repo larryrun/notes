@@ -41,3 +41,8 @@ echo | openssl s_client -showcerts -servername gnupg.org -connect gnupg.org:443 
 ```shell
 openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout example.key -out example.crt -extensions san -config <(echo "[req]"; echo distinguished_name=req; echo "[dn]"; echo DC=com; echo DC=ebay; echo DC=tess; echo O=istio; echo OU=pilot; echo "[san]"; echo subjectAltName=DNS:example.com,dirName:dn,IP:10.0.0.1) -subj /CN=example.com/OU=larry/O=ebay
 ```
+
+### Query OCSP
+openssl ocsp -issuer ./testissuer.pem -cert ./testcert.pem -text -url http://localhost:8080/publish/v1/ocsp
+
+
